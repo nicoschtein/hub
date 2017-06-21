@@ -4,7 +4,8 @@
   "description": "hub.ixi client library",
   "main": "index.js",
   "dependencies": {
-    "iota.lib.js": "^0.3.0"
+    "iota.lib.js": "^0.3.0",
+    "redis": "^2.7.1"
   },
   "devDependencies": {},
   "scripts": {
