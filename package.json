@@ -1,11 +1,11 @@
 {
   "name": "hub",
   "version": "0.1.0",
-  "description": "hub.ixi client library",
+  "description": "Hub is an input manager for IOTA",
   "main": "index.js",
   "dependencies": {
     "crypto.iota.js": "0.0.4",
-    "iota.lib.js": "^0.3.0",
+    "iota.lib.js": "^0.3.7",
     "redis": "^2.7.1"
   },
   "devDependencies": {},
