@@ -2,8 +2,10 @@
 Hub provides **input management** and **withdrawal** services, for exchanges seeking to integrate IOTA.
 
 ## Hubs and accounts
-A `hub` groups together a collection of user accounts. Both hubs and accounts are being identified by a unique `id`. Each `account` may obtain different addresses that are derived from the same hub seed. Accounts hold their
-own **balance on Tangle**, which reflects the total value of unconfirmed deposits,  their own **credit** (confirmed value) and their **index** which is relative to their id.
+A `hub` groups together a collection of user accounts. Both hubs and accounts are being identified by a unique `id`. 
+Each `account` may obtain different addresses that are derived from the same hub seed. Each hub must have its own unique _**seed**_.
+Accounts hold their own **balance on Tangle**, which reflects the total value of unconfirmed deposits, 
+their own **credit** (confirmed value) and their **index** which is relative to their id.
 
 An exchange may keep several hubs according to their needs.
 
@@ -14,7 +16,9 @@ or by exchange managers. The hot wallet is comprised of inputs that are being st
 >It is advised to maintain a sufficient number of hot wallet inputs to handle the anticipated amount of withdrawals without downtime.
 
 ## Internal sweeps
-When a user deposits to associated addresses, this balance will be automatically swept to a hot wallet address, once the sweep is confirmed, the user will be credited. This is done by calling `hub.process()` and `hub.sync()` periodically. All pending sweeps are stored in database and await for syncing.
+When a user deposits to associated addresses, this balance will be automatically swept to a hot wallet address, once the sweep is confirmed, 
+the user will be credited. This is done by calling `hub.process()` and `hub.sync()` periodically. 
+All pending sweeps are stored in database and await for syncing.
 
 ---
 
@@ -265,13 +269,15 @@ await Hub.credit(hubId, accountId, value)
 ---
 
 ### `Hub.process`
-Process a hub by `id`. It will scan all unused(unspent) hub addresses and perform sweeps on all detected deposits. If `scanUsed` is set to true only used(spent) hub addresses will be scanned. Emits a `deposit` event upon each detected deposit and a `sweep` event for each successful sweep.
+Process a hub by `id`. It will scan all unused(unspent) hub addresses and perform sweeps on all detected deposits. If `scanUsed` is set to true only used(spent) hub addresses will be scanned. Emits a `deposit` event upon each detected deposit and a `sweep` event for each successful sweep. Note that `process()`
 ```Javascript
-await Hub.process(id, scanUsed)
+await Hub.process(id, options)
 ```
 #### Input
 1. **`id`**: `Int` Hub id
-2. **`scanUsed`**: `Boolean` Optional direction to scan used addresses. Defaults to `false`
+2. **`options`**: `Object` Optional options
+ - **`scanUsed`**: `Boolean` Optional direction to scan used addresses. Defaults to `false`
+ - **`maxSweeps`**: `Int` Optional limit for max sweeps to process. Defaults to `1000`
 
 #### Return
 `Boolean` - `true` if successful, false otherwise.
@@ -286,10 +292,12 @@ await Hub.sync(id)
 ```
 #### Input
 1. **`id`**: `Int` Hub id
+2. **`maxPendingSweeps`**: `Int` Optinal limit for pending sweeps to check. Defaults to `1000000`
+
 #### Return
 `Boolean` - `true` if successful, `false` otherwise.
 
-___
+---
 
 ### `Hub.createHotWalletInput`
 Creates and stores a new hot wallet input, including address with checksum by default.
