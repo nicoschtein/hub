@@ -292,7 +292,7 @@ await Hub.sync(id)
 ```
 #### Input
 1. **`id`**: `Int` Hub id
-2. **`maxPendingSweeps`**: `Int` Optinal limit for pending sweeps to check. Defaults to `1000000`
+2. **`maxPendingSweeps`**: `Int` Optinal limit for pending sweeps to check. Defaults to `10000`
 
 #### Return
 `Boolean` - `true` if successful, `false` otherwise.
