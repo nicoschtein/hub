@@ -1,11 +1,11 @@
 {
   "name": "hub",
   "version": "0.1.0",
-  "description": "Hub is an input manager for IOTA",
+  "description": "Hub is an inputs managment system for IOTA",
   "main": "index.js",
   "dependencies": {
-    "crypto.iota.js": "0.0.4",
-    "iota.lib.js": "^0.3.7",
+    "crypto.iota.js": "iotaledger/iota.crypto.js",
+    "iota.lib.js": "^0.4.0",
     "redis": "^2.7.1"
   },
   "devDependencies": {},
