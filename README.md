@@ -185,7 +185,7 @@ await Hub.find(id)
 ### `Hub.registerAccount`
 Registers a new account on the given hub by instantiating a record in the store. An optional name can be attributed to the account.
 ```Javascript
-await Hub.create(hubId, name)
+await Hub.registerAccount(hubId, name)
 ```
 #### Input
 1. **`hubId`**: `Int` Id of the hub the account belongs to
@@ -212,7 +212,7 @@ await Hub.getNewDepositAddress(hubId, accountId, checksum)
 ---
 
 ### `Hub.getDepositAddress`
-Fetches the latests address from store given a hub and an account Id. An optional `keyIndex` argument can be passed to fetch address at a specific key index.
+Fetches the latest address from store given a hub and an account Id. An optional `keyIndex` argument can be passed to fetch address at a specific key index.
 Note that if address at specified keyIndex is not in store, `false` will be returned.
 ```Javascript
 await Hub.getNewDepositAddress(hubId, accountId, keyIndex)
@@ -220,7 +220,7 @@ await Hub.getNewDepositAddress(hubId, accountId, keyIndex)
 #### Input
 1. **`hubId`**: `Int` Id of the hub that account belongs to
 2. **`accountId`**: `Int` Account id
-3. **`checksum`**: `Int` Key index of address. Optional.
+3. **`keyIndex`**: `Int` Key index of address. Optional.
 
 #### return
 `Mixed` - Address `String` as 90-trytes (81 without checksum), `false` on failure
